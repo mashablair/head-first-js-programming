@@ -1,4 +1,4 @@
-// This code is very repetetive:
+// This code is very repetetive. It works but is not scalable and unmanageable:
 var dogName = "rover";
 var dogWeight = 23;
 if (dogWeight > 20) {
@@ -32,7 +32,7 @@ if (dogWeight > 20) {
 }
 
 // How can we improve this code?
-// We can create a function sayWoof that checks dog's weight and uses dog's name:
+// We can create a function 'sayWoof()' that checks dog's weight and dog's name:
 
 function sayWoof(dogWeight, dogName) {
     if (dogWeight > 20) {
@@ -79,8 +79,8 @@ console.log(test);
 // console.log prints '1' but it has nothing to do w/ our function
 
 
-// SCOPE
-// Here we have both global and local variables:
+// ***SCOPE***
+// In this exercise we have both global and local variables:
 
 var avatar = 'generic';
 var skill = 1.0;
@@ -115,6 +115,8 @@ avatar = getAvatar(2112); //outputs Gorrilla
 console.log(avatar);
 
 
+
+
 // Example when vars inside function become global:
 
 function playTurn(player, location) {
@@ -128,7 +130,7 @@ function playTurn(player, location) {
 var total = playTurn('Masha', 1);
 alert(points); // This is only possible b/c 'points' is a global var now!
 // This code behaves as if we declared points before the playTurn()!
-// Like this:  var points = 0;
+// Like this:  var points = 0; (on line 121)
 
 
 
