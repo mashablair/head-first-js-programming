@@ -45,6 +45,7 @@ function makePhrases() {
     // console.log(phrase);
     // document.write(phrase);
 
+    // This code is partially from w3schools (http://www.w3schools.com/jsref/met_node_appendchild.asp)
     var nodeLi = document.createElement('li'); // creates new <li> node
     var textnodeLi = document.createTextNode(phrase); // creates a text node
     nodeLi.appendChild(textnodeLi); // appends textnode to <li>
@@ -57,6 +58,7 @@ function makePhrases() {
 makePhrases();
 
     // Later I want to display my created slogans by appending them to the page as <li> and KEEPING THEM THERE PERMANENTLY by adding them to my phrases array (which doesn't exist now).
+    // I did that in Watchandcode 'Todo List' app.
     // When ready, uncomment this and fix problems:
 
     // var myPhrases = {
