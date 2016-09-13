@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 4. Arrays. Bubblegum fridge pieces.</title>
+</head>
+<body>
+
+
+<script>
+
+var products = ['Choo Choo Chocolate', 'Icy Mint', 'Cake Batter', 'Bubblegum'];
+
+// Task: Create the following output: 'Bubblegum  contains bubble gum' using the pieces of code
+
+var hasBubbleGum = [false, false, false, true];
+
+var i = 0;
+while (i < hasBubbleGum.length) {
+    // if (hasBubbleGum[i] === true) {  // we don't need to compare it with 'true'!
+    if (hasBubbleGum[i]) {  // this statement is enough
+        console.log(products[i] + ' contains bubble gum');
+    }
+    i++; // if I forget this line, the loop will run forever
+}
+
+// ---> Bubblegum contains bubble gum
+
+
+
+</script>
+
+
+</body>
+</html>
