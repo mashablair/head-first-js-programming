@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- // Phrase-o-matic Program! -->
+    <meta charset="UTF-8">
+    <title>Chapter 4. Arrays. Phrase-o-matic Program.</title>
+</head>
+<body>
+
+<!-- Output of our Phrase-o-matic program will be displayed here:  -->
+
+<div>
+    <h1>Phrase-o-matic Slogans: </h1>
+    <ul>
+        <!-- These 2 <li> are always here: -->
+        <li>B-to-B aligned vision</li>
+        <li>multi-tier focused process</li>
+    </ul>
+
+    <p>Click this button to append a new slogan to the end of the list:</p>
+    <!-- This button will add a new random slogan to the end of the list, BUT the list will not be saved after reloading:  -->
+    <button onclick="makePhrases()">New Slogan!</button>
+</div>
+
+<script>
+
+
+function makePhrases() {
+    // Here we create 3 arrays that contain adjectives, adverbs and nouns -- to pick one of each randomly and create slogans.
+    var adjectives = ["24/7", "multi-tier", "30,000 foot", "B-to-B", "win-win"];
+    var adverbs = ["empowered", "value-added", "oriented", "focused", "aligned"];
+    var nouns = ["process", "solution", "tipping-point", "strategy", "vision"];
+
+
+    // Here we use built-in functions and .length array propery to create our slogans:
+    var random1 = Math.floor(Math.random() * adjectives.length); // the length of our array is dynamic
+    var random2 = Math.floor(Math.random() * adverbs.length);
+    var random3 = Math.floor(Math.random() * nouns.length);
+
+    // This line concatenates our random picks into a slogan:
+    var phrase = adjectives[random1] + ' ' + adverbs[random2] + ' ' + nouns[random3];
+
+
+    // Display:
+    // console.log(phrase);
+    // document.write(phrase);
+
+    var nodeLi = document.createElement('li'); // creates new <li> node
+    var textnodeLi = document.createTextNode(phrase); // creates a text node
+    nodeLi.appendChild(textnodeLi); // appends textnode to <li>
+    // appends <li> to <ul>:
+    document.querySelector('ul').appendChild(nodeLi);
+    // If we had more than 1 <ul> we would have to use the id:
+    // document.getElementById('myList').appendChild(node);
+}
+
+makePhrases();
+
+    // Later I want to display my created slogans by appending them to the page as <li> and KEEPING THEM THERE PERMANENTLY by adding them to my phrases array (which doesn't exist now).
+    // When ready, uncomment this and fix problems:
+
+    // var myPhrases = {
+    //     phrases: [],
+    //     addPhrase: function(phraseText) {
+    //         this.phrases.push({
+    //             phraseText: phrase
+    //         });
+    //     }
+    // };
+    // var list = document.querySelector('ul');
+    // // set our list to empty;
+    // list.innerHTML = '';
+    // for (var i=0; i<list.length)
+    // phrase = document.createElement('li');
+    // list.appendChild(phrase);
+
+
+</script>
+
+</body>
+</html>
