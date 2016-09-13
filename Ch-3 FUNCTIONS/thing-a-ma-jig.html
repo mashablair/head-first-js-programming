@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 3. Functions. More exercise.</title>
+</head>
+<body>
+
+<script>
+    function clunk(times) {
+        var num = times;
+        while (num > 0) {
+            display("clunk"); // display() is called 120 times
+            num = num - 1;
+        }
+    }
+
+    function thingamajig(size) {
+        var facky = 1;
+        clunkCounter = 0;
+        if (size == 0) {
+            display("clank");
+        } else if (size == 1) {
+            display("thunk");
+        } else {
+            while (size > 1) {
+                facky = facky * size;
+                size = size - 1;
+            }
+            clunk(facky);
+        }
+    }
+
+    function display(output) {
+        console.log(output); // this will print 'clunk' 120 times
+        clunkCounter++;
+    }
+
+    var clunkCounter = 0;
+    // thingamajig(5);
+    thingamajig(-1);
+    console.log(clunkCounter);
+
+    // This will print 'clunk' 120 times and then print '120'
+</script>
+</body>
+</html>

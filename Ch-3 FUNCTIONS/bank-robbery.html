@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 3. Functions. Bank Robbery</title>
+</head>
+<body>
+
+<script>
+    var balance = 10500; // 'balance' is a global var BUT...
+    var cameraOn = true;
+
+    function steal(balance, amount) { // global 'balance' is shadowed by this local 'balance' parameter!  This 'balance' is not the actual bank balance! Same names, but differt things!
+        cameraOn = false;
+        if (amount < balance) {
+            balance = balance - amount; // he is not changing the actual balance -- just a local copy!  :)
+        }
+        return amount;
+        cameraOn = true;
+    }
+
+    var amount = steal(balance, 1250);
+    alert("Criminal: you stole " + amount + "!");
+
+    // so the criminal can't steal anything because he used 'balance' both globally and locally. So he created this new local balance which has nothing to do with the global, real balance.
+    // Criminal should've used 'bankBalance' as a parameter and
+    // then bankBalance = balance - amount; to steal the money!
+</script>
+</body>
+</html>
