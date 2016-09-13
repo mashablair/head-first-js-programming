@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bubbles-R-Us Challenge -->
+    <meta charset="UTF-8">
+    <title>Chapter 4. Arrays. Bubbles Problem.</title>
+</head>
+<body>
+<h1> Bubbles-R-Us Report</h1>
+
+<h2>List of all solutions with the score:</h2>
+
+<script>
+    var scores = [60, 50, 60, 58, 54, 54, 58, 50, 52, 54, 48, 69, 34, 55, 51, 52, 44, 51, 69, 64, 66, 55, 52, 61, 46, 31, 57, 52, 44, 18, 41, 53, 55, 61, 51, 44];
+
+// ALL TASKS ARE CODED WITHOUT LOOKING AT THE SOLUTION IN THE BOOK!  :)
+
+// TASK #1: List all Bubble solutions with corresponding score.
+
+    var num = 0;
+    function listAllScore() {
+        for (var i=0; i<scores.length; i++) {
+            document.write("Bubble solution #" + num + ' ' + "score:" + ' ' + scores[i] + '</br>');
+            num++;
+        };
+        document.write('</br>'); // this creates a line break before the next task
+    }
+
+    listAllScore(); // this outputs a nice list like this:
+    // --->  'Bubble solution #0 score: 60'
+
+// TASK #2: Print the total number of bubble scores, like this:
+// 'Bubbles tests: 36' (where 36 is a dynamic number)
+
+    document.write('Bubbles tests: ' + (scores.length + 1) + '</br>' + '</br>');
+
+
+// TASK #3: Print the highest bubble score, like this:
+// 'Highest bubble score: 69' (where 69 is dynamic number)
+
+    // this line (to get 'largest') is from http://stackoverflow.com/questions/1379553/how-might-i-find-the-largest-number-contained-in-a-javascript-array
+    var largest = Math.max.apply(Math, scores);
+    document.write('Highest bubble score: ' + largest + '</br>' + '</br>');
+
+// TASL #4: Print each solution that has the highest score, like this:
+// 'Solutions with highest score: #11, #18'
+
+    document.write('Solutions with highest score: ' );
+    for (var i=0; i<scores.length; i++) {
+        if (scores[i] === largest) {
+            document.write('#' + i + ', ');
+        };
+    };
+
+</script>
+
+
+
+</body>
+</html>

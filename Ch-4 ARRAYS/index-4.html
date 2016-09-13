@@ -33,6 +33,7 @@ function makePhrases() {
 
 
     // Here we use built-in functions and .length array propery to create our slogans:
+    // Math.random generates a # from 0 to 1 (not including 1). If we multiply this number by the length of the array, and use Math.floor to truncate it, we get a number between 0 and one less than the length of the array.
     var random1 = Math.floor(Math.random() * adjectives.length); // the length of our array is dynamic
     var random2 = Math.floor(Math.random() * adverbs.length);
     var random3 = Math.floor(Math.random() * nouns.length);
@@ -56,6 +57,7 @@ function makePhrases() {
 }
 
 makePhrases();
+// makePhrases(); //I can call it multiple times if I want to add more than 1 slogan at the time!!
 
     // Later I want to display my created slogans by appending them to the page as <li> and KEEPING THEM THERE PERMANENTLY by adding them to my phrases array (which doesn't exist now).
     // I did that in Watchandcode 'Todo List' app.
