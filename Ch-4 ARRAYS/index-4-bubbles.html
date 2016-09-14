@@ -20,7 +20,6 @@
     function listAllScore() { // the function is unnecessary btw, the result would be the same if we just used for loop
         for (var i=0; i<scores.length; i++) {
             document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
-            i++;
         }
         document.write('</br>'); // this creates a line break before the next task
     }
@@ -31,7 +30,7 @@
 // TASK #2: Print the total number of bubble scores, like this:
 // 'Bubbles tests: 36' (where 36 is a dynamic number)
 
-    document.write('Bubbles tests: ' + (scores.length + 1) + '</br>' + '</br>');
+    document.write('Bubbles tests: ' + (scores.length) + '</br>' + '</br>');
 
 
 // TASK #3: Print the highest bubble score, like this:
@@ -52,15 +51,33 @@
     }
 
 
-// Here is the book's solution for Task #3 (to find the highest score):
 
-// var highScore = 0;
-// for (var i=0; i<scores.length; i++) {
-//     document.write(scores[i]);
-//     if (scores[i] > highScore) {
-//         highScore = scores[i];
-//     }
-// }
+// ------------------------------------------------------
+// Here is another way to do the repot (to find the highest score while doing the for loop that displays all scores/solutions):
+
+document.write('<h2>' + 'Another way to do the Report:' + '</h2>');
+
+var highScore = 0; // this line + the existing code
+for (var i=0; i<scores.length; i++) {
+    document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
+
+    if (scores[i] >= highScore) { // this checks for the high score
+        highScore = scores[i];  // and updates the highScore if the greater number is found
+    }
+}
+
+document.write('</br>' + 'Bubbles tests: ' + i);
+document.write('</br>' + 'Highest bubble score: ' + highScore);
+
+var highScoreArray = []; // this empty array will collect the solution # for the highest score
+// Now we need another loop that will check which solution numbers (i) have the highest score (now that we know that number from the previous loop -- highScore)
+for (var i=0; i<scores.length; i++) {
+    if (scores[i] === highScore) {
+        highScoreArray.push(i);
+    }
+}
+
+document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreArray);
 
 </script>
 
