@@ -90,42 +90,42 @@ document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreA
 
 document.write('<h3>' + 'Version 3 of the Report:' + '</h3>');
 
-function printAndGetHighScore(myArray) {
-    var highScore = 0; // this line + the existing code
-    for (var i=0; i<myArray.length; i++) {
-        document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + myArray[i] + '</br>');
+function printAndGetHighScore(scores) { // 'scores' here is a parameter, not the global var 'scores'!
+    var highScore = 0;
+    for (var i=0; i<scores.length; i++) {
+        document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
 
-        if (myArray[i] >= highScore) { // this checks for the high score
-            highScore = myArray[i];  // and updates the highScore if the greater number is found
+        if (scores[i] > highScore) { // this checks for the high score
+            highScore = scores[i];  // and updates the highScore if the greater number is found
         }
     }
 
     document.write('</br>' + 'Bubbles tests: ' + i);
     document.write('</br>' + 'Highest bubble score: ' + highScore);
-    // return highScore;
+    return highScore;
 
 } // end of my printAndGetHighScore()
-printAndGetHighScore(scores);
+
+var highScore = printAndGetHighScore(scores); // we call this function and assign the returned value to the var 'highScore'
 
 
-
-
-
-function getBestSolutions(myArray) {
+function getBestSolutions(scores, highScore) {
 
     var highScoreArray = []; // this empty array will collect the solution # for the highest score
     // Now we need another loop that will check which solution numbers (i) have the highest score (now that we know that number from the previous loop -- highScore)
-    for (var i=0; i<myArray.length; i++) {
-        if (myArray[i] === highScore) {
+    for (var i=0; i<scores.length; i++) {
+        if (scores[i] === highScore) {
             highScoreArray.push(i);
         }
     }
 
-document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreArray);
+    document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreArray);
+
+    return highScoreArray;
 
 } // end of getBestSolutions()
 
-getBestSolutions(scores);
+var highScoreArray = getBestSolutions(scores, highScore); // again, we call this function and assign the returned value to the var 'highScoreArray'
 
 </script>
 
