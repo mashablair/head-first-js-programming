@@ -17,11 +17,11 @@
 
 // TASK #1: List all Bubble solutions with corresponding score.
 
-    function listAllScore() {
+    function listAllScore() { // the function is unnecessary btw, the result would be the same if we just used for loop
         for (var i=0; i<scores.length; i++) {
             document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
-            num++;
-        };
+            i++;
+        }
         document.write('</br>'); // this creates a line break before the next task
     }
 
@@ -48,8 +48,19 @@
     for (var i=0; i<scores.length; i++) {
         if (scores[i] === largest) {
             document.write('#' + i + ', ');
-        };
-    };
+        }
+    }
+
+
+// Here is the book's solution for Task #3 (to find the highest score):
+
+// var highScore = 0;
+// for (var i=0; i<scores.length; i++) {
+//     document.write(scores[i]);
+//     if (scores[i] > highScore) {
+//         highScore = scores[i];
+//     }
+// }
 
 </script>
 
