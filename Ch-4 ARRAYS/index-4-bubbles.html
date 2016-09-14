@@ -9,12 +9,14 @@
 <h1> Bubbles-R-Us Report</h1>
 
 <h2>List of all solutions with the score:</h2>
+<h3> Version 1 of the Report: </h3>
 
 <script>
     var scores = [60, 50, 60, 58, 54, 54, 58, 50, 52, 54, 48, 69, 34, 55, 51, 52, 44, 51, 69, 64, 66, 55, 52, 61, 46, 31, 57, 52, 44, 18, 41, 53, 55, 61, 51, 44];
 
 // ALL TASKS ARE CODED WITHOUT LOOKING AT THE SOLUTION IN THE BOOK!  :)
 
+// VERSION 1 OF THE REPORT:
 // TASK #1: List all Bubble solutions with corresponding score.
 
     function listAllScore() { // the function is unnecessary btw, the result would be the same if we just used for loop
@@ -53,9 +55,10 @@
 
 
 // ------------------------------------------------------
+// VERSION 2: W/O Math.max.apply()
 // Here is another way to do the repot (to find the highest score while doing the for loop that displays all scores/solutions):
 
-document.write('<h2>' + 'Another way to do the Report:' + '</h2>');
+document.write('<h3>' + 'Version 2 of the Report:' + '</h3>');
 
 var highScore = 0; // this line + the existing code
 for (var i=0; i<scores.length; i++) {
@@ -78,6 +81,51 @@ for (var i=0; i<scores.length; i++) {
 }
 
 document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreArray);
+
+
+
+
+// -----------------------------------------------------
+// VERSION 3: Add Functions to Version 2
+
+document.write('<h3>' + 'Version 3 of the Report:' + '</h3>');
+
+function printAndGetHighScore(myArray) {
+    var highScore = 0; // this line + the existing code
+    for (var i=0; i<myArray.length; i++) {
+        document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + myArray[i] + '</br>');
+
+        if (myArray[i] >= highScore) { // this checks for the high score
+            highScore = myArray[i];  // and updates the highScore if the greater number is found
+        }
+    }
+
+    document.write('</br>' + 'Bubbles tests: ' + i);
+    document.write('</br>' + 'Highest bubble score: ' + highScore);
+    // return highScore;
+
+} // end of my printAndGetHighScore()
+printAndGetHighScore(scores);
+
+
+
+
+
+function getBestSolutions(myArray) {
+
+    var highScoreArray = []; // this empty array will collect the solution # for the highest score
+    // Now we need another loop that will check which solution numbers (i) have the highest score (now that we know that number from the previous loop -- highScore)
+    for (var i=0; i<myArray.length; i++) {
+        if (myArray[i] === highScore) {
+            highScoreArray.push(i);
+        }
+    }
+
+document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreArray);
+
+} // end of getBestSolutions()
+
+getBestSolutions(scores);
 
 </script>
 
