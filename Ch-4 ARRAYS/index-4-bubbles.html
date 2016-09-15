@@ -14,73 +14,73 @@
 <script>
     var scores = [60, 50, 60, 58, 54, 54, 58, 50, 52, 54, 48, 69, 34, 55, 51, 52, 44, 51, 69, 64, 66, 55, 52, 61, 46, 31, 57, 52, 44, 18, 41, 53, 55, 61, 51, 44];
 
-// ALL TASKS ARE CODED WITHOUT LOOKING AT THE SOLUTION IN THE BOOK!  :)
+// // ALL TASKS ARE CODED WITHOUT LOOKING AT THE SOLUTION IN THE BOOK!  :)
 
-// VERSION 1 OF THE REPORT:
-// TASK #1: List all Bubble solutions with corresponding score.
+// // VERSION 1 OF THE REPORT:
+// // TASK #1: List all Bubble solutions with corresponding score.
 
-    function listAllScore() { // the function is unnecessary btw, the result would be the same if we just used for loop
-        for (var i=0; i<scores.length; i++) {
-            document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
-        }
-        document.write('</br>'); // this creates a line break before the next task
-    }
+//     function listAllScore() { // the function is unnecessary btw, the result would be the same if we just used for loop
+//         for (var i=0; i<scores.length; i++) {
+//             document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
+//         }
+//         document.write('</br>'); // this creates a line break before the next task
+//     }
 
-    listAllScore(); // this outputs a nice list like this:
-    // --->  'Bubble solution #0 score: 60'
+//     listAllScore(); // this outputs a nice list like this:
+//     // --->  'Bubble solution #0 score: 60'
 
-// TASK #2: Print the total number of bubble scores, like this:
-// 'Bubbles tests: 36' (where 36 is a dynamic number)
+// // TASK #2: Print the total number of bubble scores, like this:
+// // 'Bubbles tests: 36' (where 36 is a dynamic number)
 
-    document.write('Bubbles tests: ' + (scores.length) + '</br>' + '</br>');
-
-
-// TASK #3: Print the highest bubble score, like this:
-// 'Highest bubble score: 69' (where 69 is dynamic number)
-
-    // this line (to get 'largest') is from http://stackoverflow.com/questions/1379553/how-might-i-find-the-largest-number-contained-in-a-javascript-array
-    var largest = Math.max.apply(Math, scores);
-    document.write('Highest bubble score: ' + largest + '</br>' + '</br>');
-
-// TASL #4: Print each solution that has the highest score, like this:
-// 'Solutions with highest score: #11, #18'
-
-    document.write('Solutions with highest score: ' );
-    for (var i=0; i<scores.length; i++) {
-        if (scores[i] === largest) {
-            document.write('#' + i + ', ');
-        }
-    }
+//     document.write('Bubbles tests: ' + (scores.length) + '</br>' + '</br>');
 
 
+// // TASK #3: Print the highest bubble score, like this:
+// // 'Highest bubble score: 69' (where 69 is dynamic number)
 
-// ------------------------------------------------------
-// VERSION 2: W/O Math.max.apply()
-// Here is another way to do the repot (to find the highest score while doing the for loop that displays all scores/solutions):
+//     // this line (to get 'largest') is from http://stackoverflow.com/questions/1379553/how-might-i-find-the-largest-number-contained-in-a-javascript-array
+//     var largest = Math.max.apply(Math, scores);
+//     document.write('Highest bubble score: ' + largest + '</br>' + '</br>');
 
-document.write('<h3>' + 'Version 2 of the Report:' + '</h3>');
+// // TASK #4: Print each solution that has the highest score, like this:
+// // 'Solutions with highest score: #11, #18'
 
-var highScore = 0; // this line + the existing code
-for (var i=0; i<scores.length; i++) {
-    document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
+//     document.write('Solutions with highest score: ' );
+//     for (var i=0; i<scores.length; i++) {
+//         if (scores[i] === largest) {
+//             document.write('#' + i + ', ');
+//         }
+//     }
 
-    if (scores[i] >= highScore) { // this checks for the high score
-        highScore = scores[i];  // and updates the highScore if the greater number is found
-    }
-}
 
-document.write('</br>' + 'Bubbles tests: ' + i);
-document.write('</br>' + 'Highest bubble score: ' + highScore);
 
-var highScoreArray = []; // this empty array will collect the solution # for the highest score
-// Now we need another loop that will check which solution numbers (i) have the highest score (now that we know that number from the previous loop -- highScore)
-for (var i=0; i<scores.length; i++) {
-    if (scores[i] === highScore) {
-        highScoreArray.push(i);
-    }
-}
+// // ------------------------------------------------------
+// // VERSION 2: W/O Math.max.apply()
+// // Here is another way to do the repot (to find the highest score while doing the for loop that displays all scores/solutions):
 
-document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreArray);
+// document.write('<h3>' + 'Version 2 of the Report:' + '</h3>');
+
+// var highScore = 0; // this line + the existing code
+// for (var i=0; i<scores.length; i++) {
+//     document.write("Bubble solution #" + i + ' ' + "score:" + ' ' + scores[i] + '</br>');
+
+//     if (scores[i] >= highScore) { // this checks for the high score
+//         highScore = scores[i];  // and updates the highScore if the greater number is found
+//     }
+// }
+
+// document.write('</br>' + 'Bubbles tests: ' + i);
+// document.write('</br>' + 'Highest bubble score: ' + highScore);
+
+// var highScoreArray = []; // this empty array will collect the solution # for the highest score
+// // Now we need another loop that will check which solution numbers (i) have the highest score (now that we know that number from the previous loop -- highScore)
+// for (var i=0; i<scores.length; i++) {
+//     if (scores[i] === highScore) {
+//         highScoreArray.push(i);
+//     }
+// }
+
+// document.write('</br>' + 'Solutions with the highest score: ' + '#' + highScoreArray);
 
 
 
@@ -126,6 +126,61 @@ function getBestSolutions(scores, highScore) {
 } // end of getBestSolutions()
 
 var highScoreArray = getBestSolutions(scores, highScore); // again, we call this function and assign the returned value to the var 'highScoreArray'
+
+// And now we have a new challenge.  We have a 'parallel' array with the corresponding cost of the bubble solutions.
+
+var costs = [.25, .27, .25, .25, .25, .25, .33, .31, .25, .29, .27, .22, .31, .25, .25, .33, .21, .25, .25, .25, .28, .25, .24, .22, .20, .25, .30, .25, .24, .25,
+    .25, .25, .27, .25, .26, .29];
+
+
+// TASK #5: (ONLY VERSION 3 HAS THIS TASK)
+// The task is to find the best solution: with highest score and the lowest cost.
+
+function getMostCostEffectiveSolution(scores, costs, highScore) {
+    var cost = 100;
+    var indexOfMostCostEffective; // our future solution #
+    for (var i=0; i<scores.length; i++) {
+        if (scores[i] === highScore) {  // if solution score = the highest score we already know (got from the previous function)
+            if (cost > costs[i]) {  // we then will check the price: if 100 > the cost of that solution
+                indexOfMostCostEffective = i; // then our perfect solution's index is set to this index
+                cost = costs[i]; // and cost = .25 (which is now the lowest) and the loop will repeat
+            }
+        }
+    }
+
+    return indexOfMostCostEffective;
+}
+
+var mostCostEffective = getMostCostEffectiveSolution(scores, costs, highScore);
+
+document.write('</br>' + 'Bubble Solution #' + mostCostEffective + ' is the most cost effective');
+
+
+// But the last function is not very efficient, because it rechecks the long 'scores' array for the value we already have -- a short 'highScoreArray'.  We can refactor this function to use the much shorter 'highScoreArray':
+
+function getMostCostEffectiveSolution2(highScoreArray, costs) {
+    var cost = 100; // same var
+    var solutionIndex;  // index for 'highScoreArray'
+    var lowCostIndex;  // index to return from 'highScoreArray'
+
+    for (var i=0; i<highScoreArray.length; i++) {
+        solutionIndex = highScoreArray[i];
+        if (cost > costs[solutionIndex]) {
+            lowCostIndex = solutionIndex;
+            cost = costs[solutionIndex];
+        }
+    }
+    return lowCostIndex;
+}
+
+var mostCostEffective2 = getMostCostEffectiveSolution2(highScoreArray, costs);
+
+document.write('<h4>' + 'Alternative Solution: ' + '</h4>');
+
+document.write('</br>' + 'Bubble Solution #' + mostCostEffective2 + ' is the most cost effective');
+
+
+
 
 </script>
 
