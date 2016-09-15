@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 5 of 'Head First JS Programming'. OBJECTS.</title>
+</head>
+<body>
+
+<script>
+// let's create our 1st object:
+var chevy = {
+    make: 'Chevy',
+    model: 'Bel Air',
+    year: 1957,
+    color: 'red',
+    passengers: 2,
+    convertible: false,
+    mileage: 1025
+};
+
+// and another one:
+var cadi = {
+    make: 'GM',
+    model: 'Cadillac',
+    year: '1955',
+    color: 'white',
+    passengers: 6,
+    convertible: true,
+    mileage: 12892
+};
+
+var fiat = {
+    make: 'Fiat',
+    model: '500',
+    year: 1957,
+    color: 'Middle Blue',
+    passengers: 2,
+    convertible: false,
+    mileage: 88000
+};
+
+// let's do something with the last object:
+var miles = fiat.mileage;  // dot notation allows access to object's properties
+if (miles < 2000) {
+    // buyIt();
+}
+
+// to change the property:
+fiat.mileage = 2000;
+
+// to add a NEW property:
+fiat.needsWashing = true;
+
+console.log(fiat); // our 'fiat' object is now updated w/ this new property
+document.write(fiat);
+
+// to compute with properties:
+if (fiat.year < 1965) {
+    classic = true;
+}
+for (var i=0; i<fiat.passengers; i++) {
+    // addPassenger();
+}
+
+// Object Magnets Scrambled Challenge:
+var dog = {
+    name: 'Fido',
+    weight: 20.2,
+    age: 4,
+    breed: 'mixed',
+    activity: 'fetch balls'
+};
+
+var bark;
+if (dog.weight > 20) {
+    bark = 'WOOF WOOF';
+} else {
+    bark = 'woof woof';
+}
+
+var speak = dog.name + ' says ' + bark + ' when he wants to ' + dog.activity;
+console.log(speak);
+
+dog.dogYears = 35;
+
+console.log(dog);
+
+
+// to delete the property:
+delete dog.dogYears;
+console.log(dog);  // interesting... this deletes 'dogYears'
+
+
+// Challenge: I'm looking for a good car with these criteria:
+// * built in 1960 or before
+// * 10,000 miles or less
+// Here is my solution that works, it seems:
+
+var taxi = {
+    make: 'Webville Motors',
+    model: 'Taxi',
+    year: 1957,
+    color: 'yellow',
+    passengers: 4,
+    convertible: false,
+    mileage: 3000000,
+};
+
+function qualifyMyNewCar(car) {
+    // debugger;
+    if (car.year <= 1960) {
+        console.log(car.year);
+    } if (car.mileage <= 10000) {
+            console.log(car.mileage);
+            console.log('This ' + car.make + ' is prequalified!');
+    } else {
+            console.log('This ' + car.make + ' is NOT prequalified!');
+            return false;
+        }
+    return true;
+}
+
+qualifyMyNewCar(taxi);
+
+// the book has a different solution:
+
+function prequal(car) {
+    if (car.year > 1960) {
+        return false;
+    } else if (car.mileage > 10000) {
+        return false;
+    }
+    return true;
+}
+
+var worthALook = prequal(taxi);
+
+if (worthALook) {
+    console.log('This ' + taxi.make + ' is worth a look!');
+} else {
+    console.log('Nope, this ' + taxi.make + ' is NOT worth looking at...');
+}
+
+// let's check our chevy:
+
+var worthALook = prequal(chevy);
+
+if (worthALook) {
+    console.log('This ' + chevy.make + ' is worth a look!');
+} else {
+    console.log('Nope, this ' + chevy.make + ' is NOT worth looking at...');
+}
+
+// let's check our 'fiat':
+var worthALook = prequal(fiat);
+
+if (worthALook) {
+    console.log('This ' + fiat.make + ' is worth a look!');
+} else {
+    console.log('Nope, this ' + fiat.make + ' is NOT worth looking at...');
+}
+// --> returned true?  Why?  -- Ahhh, it's because later we assigned a new value to fiat.mileage!  We assigned 2000 value.
+
+// and at last -- our 'cadi':
+var worthALook = prequal(cadi);
+
+if (worthALook) {
+    console.log('This ' + cadi.make + ' is worth a look!');
+} else {
+    console.log('Nope, this ' + cadi.make + ' is NOT worth looking at...');
+}
+
+// Let's continue with more exercises for Chapter 5 in index-5-secret.html file
+
+</script>
+
+
+</body>
+</html>
