@@ -32,17 +32,190 @@ var fiat = {
 
     drive: function() {
         if (this.started) { // here we are not referring to a variable -- we are referring to a PROPERTY! Property of this object.
-            alert('Zoom zoom!');
+            alert(this.make + ' ' + this.model + ' goes zoom zoom!');
         } else {
             alert('You need to start the engine first');
         }
     }
 };
 
-fiat.drive();
-fiat.start();
-fiat.drive();
-fiat.stop();
+// fiat.drive();
+// fiat.start();
+// fiat.drive();
+// fiat.stop();
+
+// let's add more cars and give them the same methods, the code will be the same because of the keywords 'this'!
+
+var cadi = {
+    make: 'GM',
+    model: 'Cadillac',
+    year: '1955',
+    color: 'white',
+    passengers: 6,
+    convertible: true,
+    mileage: 12892,
+
+    started: false, // engine status
+
+    start: function() {
+        this.started = true; // turns on the engine
+    },
+
+    stop: function() {
+        this.started = false; // turns OFF the engine
+    },
+
+    drive: function() {
+        if (this.started) { // here we are not referring to a variable -- we are referring to a PROPERTY! Property of this object.
+        // the value of 'this' is set when you call the method and not when you define the object!
+            alert(this.make + ' ' + this.model + ' goes zoom zoom!');
+        } else {
+            alert('You need to start the engine first');
+        }
+    }
+};
+
+var chevy = {
+    make: 'Chevy',
+    model: 'Bel Air',
+    year: 1957,
+    color: 'red',
+    passengers: 2,
+    convertible: false,
+    mileage: 1025,
+
+    started: false, // engine status
+
+    start: function() {
+        this.started = true; // turns on the engine
+    },
+
+    stop: function() {
+        this.started = false; // turns OFF the engine
+    },
+
+    drive: function() {
+        if (this.started) { // here we are not referring to a variable -- we are referring to a PROPERTY! Property of this object.
+        // the value of 'this' is set when you call the method and not when you define the object!
+            alert(this.make + ' ' + this.model + ' goes zoom zoom!');
+        } else {
+            alert('You need to start the engine first');
+        }
+    }
+};
+
+// let's take all 3 of them for a ride!
+// fiat.start();
+// fiat.drive();
+// fiat.stop();
+// cadi.start();
+// cadi.drive();
+// cadi.stop();
+// chevy.start();
+// chevy.drive();
+// chevy.stop();
+
+// This code is not good because we copy and paste a lot, it's not scalable and error prone.
+
+
+
+// FOR IN
+// there is a special loop for objects: 'for in' loop
+// it steps through every object's property in arbitrary order:
+
+document.write('<h3>' + 'Properties of cadi object: ' +'</h3>');
+for (var property in cadi) { // can be any word
+    document.write(property + ': ' + cadi[property] + '</br>');
+}
+// it will display all properties of cadi object
+
+
+
+// FUEL
+// How behavior affects state:
+// To get behavior and state interact, let's add fuel:
+
+var chevy2 = {
+    make: 'Chevy',
+    model: 'Bel Air',
+    year: 1957,
+    color: 'red',
+    passengers: 2,
+    convertible: false,
+    mileage: 1025,
+
+    started: false,
+    fuel: 0, // we set fuel
+
+    start: function() {
+        if (this.fuel === 0) {
+            alert('There is no fuel! Fill up the tank!');
+        } else {
+            this.started = true;
+        }
+    },
+
+    stop: function() {
+        this.started = false;
+    },
+
+    // we modify 'drive' method to consider fuel:
+    drive: function() {
+        if (this.started) {
+            if (this.fuel > 0) { // we check if there is fuel first, if there is - we drive and substract 1 from fuel:
+                alert(this.make + ' ' + this.model + ' goes zoom zoom!');
+                this.fuel--;
+
+            } else { // if no fuel -- we don't drive
+                alert('Uh oh, out of fuel!');
+            }
+        } else {
+            alert('You need to start the engine first');
+        }
+    },
+
+    addFuel: function(amount) { // to add fuel
+        this.fuel = this.fuel + amount; // 'amount' is a parameter! so we don't need 'this'
+    }
+};
+
+
+chevy2.addFuel(2);
+chevy2.start();
+chevy2.drive();
+chevy2.drive();
+chevy2.drive(); // we run out of fuel :)
+
+
+
+
+
+
+
+// more 'this' exercises:
+
+var eightBall = {
+    index: 0,
+    advice: ['yes', 'no', 'maybe', 'not a chance'],
+    shake: function() {
+        this.index = this.index + 1;
+        if (this.index >= this.advice.length) {
+            this.index = 0;
+        }
+    },
+    look: function() {
+        return this.advice[this.index]
+    }
+};
+
+eightBall.shake();
+console.log(eightBall.look());
+eightBall.shake();
+console.log(eightBall.look());
+eightBall.shake();
+console.log(eightBall.look());
+eightBall.shake();
+console.log(eightBall.look());
 </script>
 
 
