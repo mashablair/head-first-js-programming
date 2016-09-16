@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 6 of Head First JS Programming. The DOM.</title>
+</head>
+<body>
+
+<h1>Green Planet</h1>
+<p id="greenplanet">All is well</p>
+<h1>Red Planet</h1>
+<p id="redplanet">Nothing to report</p>
+<h1>Blue Planet</h1>
+<p id="blueplanet">All systems A-OK</p>
+
+<script>
+
+// Let's create a full-proof way to execute this code by making sure it runs AFTER the page has fully loaded:
+function init() {
+    var planet = document.getElementById('greenplanet');
+    planet.innerHTML = 'We have been hit!'; // 'innerHTML' is not a method!  It's a property!
+}
+
+// and here is the magic:
+window.onload = init;
+// we assigned our function to window.onload property. We are NOT calling the function!
+// window object is built in to JS. It = browser window.
+
+
+</script>
+
+</body>
+</html>
