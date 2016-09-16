@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Chapter 6 of Head First JS Programming. The DOM.</title>
+
+    <style>
+        .redtext {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,12 +25,39 @@
 function init() {
     var planet = document.getElementById('greenplanet');
     planet.innerHTML = 'We have been hit!'; // 'innerHTML' is not a method!  It's a property!
+    planet.setAttribute('class', 'redtext'); // new method: .setAttribute()
+
+    // to GET attribute:
+    var myAttribute = planet.getAttribute('class');
+    console.log(myAttribute);
+    // if the attribute doesn't exist, it will return 'null'!
+
+    console.log(planet.getAttribute('alt')); // --> 'null'
+
+    // it's a good idea to test for returned 'null':
+    var srcAttribute = planet.getAttribute('src');
+    if (srcAttribute === null) {
+        console.log('Uh oh! This attribute does not exist!')
+    }
+
+    // just trying something here:
+    var allClasses = planet.getElementsByClassName('redtext');
+    console.log(allClasses); // --> emplty array. Why?...
+
 }
 
 // and here is the magic:
 window.onload = init;
 // we assigned our function to window.onload property. We are NOT calling the function!
 // window object is built in to JS. It = browser window.
+
+// This is called 'event handler' or 'callback function' and is used A LOT in JS.
+
+
+// NEXT STEP! Change the innerHTML of the #greenplanet to red color text. Dynamically!
+// We gonna do it by using setAttribute() method -- to either create a new attirbute or change an existing one.
+
+
 
 
 </script>
