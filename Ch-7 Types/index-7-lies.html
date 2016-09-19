@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Practicing truthey and falsey -->
+    <meta charset="UTF-8">
+    <title>Chapter 7. Lie Detector.</title>
+</head>
+<body>
+
+<script>
+
+function lieDetectorTest() {
+    var lies = 0;
+    var stolenDiamond = {}; // empty objects are not
+    if (stolenDiamond) { // truthy
+        console.log("You stole the diamond");
+        lies++; // 1
+    }
+
+    var car = {
+        keysInPocket: null // falsey!
+    };
+
+    if (car.keysInPocket) { // falsey
+        console.log("Uh oh, guess you stole the car!");
+        lies++; // still 1
+    }
+
+    if (car.emptyGasTank) { // undefined --> falsey
+        console.log("You drove the car after you stole it!");
+        lies++; // still 1
+    }
+
+    var foundYouAtTheCrimeScene = []; // empty arrays are truthy!
+    if (foundYouAtTheCrimeScene) { // truthy
+        console.log("A sure sign of guilt");
+        lies++; // 2
+    }
+
+    if (foundYouAtTheCrimeScene[0]) { // undefined -- falsey
+        console.log("Caught with a stolen item!");
+        lies++; // 3
+    }
+
+    var yourName = " "; // this is not empty string, it has space
+    if (yourName) { // truthy
+        console.log("Guess you lied about your name");
+        lies++; // still 3
+    }
+    return lies;
+}
+
+var numberOfLies = lieDetectorTest();
+console.log("You told " + numberOfLies + " lies!");
+if (numberOfLies >= 3) {
+    console.log("Guilty as charged");
+}
+
+// funny - here 'truthy' means he's done that crime
+
+</script>
+
+
+</body>
+</html>

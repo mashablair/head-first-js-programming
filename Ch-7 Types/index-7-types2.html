@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 7. Types part 2.</title>
+</head>
+<body>
+<h1>Truthy and Falsey in JS</h1>
+
+<script>
+// There are 5 falsey values in JS:
+// 0
+// ''
+// null
+// NaN
+// undefined
+
+// Everything else is truthy!  (except for 'false' of course)
+
+if ([]) {
+    document.write('Empty arrays are truthy!' + '</br>');
+}
+
+if (1) {
+    document.write('Numbers are also truthy!' + '</br>');
+}
+
+var element = document.getElementsByTagName('h1');
+if (element) {
+    document.write('This object is here! Objects are truthy!' + '</br>');
+}
+
+if ('hello! I am a string!') {
+    document.write('Strings are also truthy, unless they are empty.' + '</br>');
+}
+
+if (5/5) {
+    document.write('Numbers are truthy, unless they are NaN' + '</br>');
+}
+
+// SECRET LIFE OF STRINGS!!
+</script>
+
+
+
+
+</body>
+</html>
