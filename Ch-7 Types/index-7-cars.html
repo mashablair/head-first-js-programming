@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Practice comparing objects -->
+    <meta charset="UTF-8">
+    <title>Chapter 7. Types. Find cars in a lot.</title>
+</head>
+<body>
+
+<script>
+// This code helps finding cars in Earl's Autos parking lot.
+// what are values of vars loc1 and loc4?
+
+function findCarInLot(car) {
+    for (var i=0; i<lot.length; i++) {
+        if (car === lot[i]) {
+            console.log('Position in array lot is ' + i);
+            return i;
+        }
+    }
+    console.log('What is going on?');
+    return -1;
+}
+
+var chevy = {
+    make: 'Chevy',
+    model: 'Bel Air'
+};
+
+var taxi = {
+    make: 'Webville Motors',
+    model: 'Taxi'
+};
+
+var fiat1 = {
+    make: 'Fiat',
+    model: '500'
+};
+
+var fiat2 = {
+    make: 'Fiat',
+    model: '500'
+};
+
+
+var lot = [chevy, taxi, fiat1, fiat2]; // this array must be placed AFTER the individual objects! Otherwise, the code won't work and returns '-1'...
+
+
+var loc1 = findCarInLot(fiat2); // --> 3
+
+// why is it that if I change the positions of lot and objects, I get '-1' returned???
+
+// if: function, lot, var objects --> mess?
+
+</script>
+</body>
+</html>
