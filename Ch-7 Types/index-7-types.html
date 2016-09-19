@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 7. Serious types.</title>
+</head>
+<body>
+<h1>Serious Types!</h1>
+
+<script>
+
+// There are primitive types: numbers, strings, booleans, and there are objects (e.g. document, window or dog).
+
+// 'undefined' -- a lot of things fall into this bucket. (e.g. value of array item that doesn't exist in sparse array, what's returned from a function w/ no return statement, var w/o assignment, value of deleted property, etc.)
+
+// 'undefined' -- things that don't yet have value.  Not yet initialized.
+
+var x;
+
+if (x == undefined) {
+    console.log('x is not defined! just deal with it!');
+} else {
+    console.log('value of variable x is ' + x);
+}
+
+// another example when you want to test for undefined:
+
+var customer = {
+    name: 'Masha'
+};
+if (customer.phoneNumber == undefined) {
+    // alert('Get customer phone number!');
+}
+
+// My code design will dictate if I need to test for undefined, so I can handle those situation gracefully
+
+// The type of 'undefined' is undefined.  :)  JS's twilight zone.
+
+// JS has 'typeof' operator to get the var's type:
+
+var experiment = 'Masha';
+console.log(typeof experiment); // --> string
+var experiment1 = 5;
+console.log(typeof experiment1);
+var experiment2 = true;
+console.log(typeof experiment2);
+var experiment4;
+console.log(typeof experiment4); // --> undefined
+
+// Weird output!
+var experiment5 = [];
+console.log(typeof experiment5); // --> object!  Why??
+
+var experiment6 = {};
+console.log(typeof experiment6); // --> objects
+
+// another JS twilight zone!!
+var experiment3 = 0/0;
+console.log(typeof experiment3); // --> number!
+
+function experiment7() {return 'Masha'};
+console.log(typeof experiment7); // --> function
+
+
+// NULL
+// Value of 'no object' = null;
+
+var test = document.getElementById('test');
+console.log(typeof test); // --> object!
+console.log(test); // --> null
+
+var futureObject = null;
+console.log(typeof futureObject); // --> object
+// this means 'this var will become an OBJECT at some point';
+// null = 'lack of object'
+// undefined = 'lack of variable'
+
+// we can test for 'null':
+if (test == null) {
+    console.log('Uh oh! Where is my id="test"??');
+}
+
+
+// NaN
+// weirdest value in JS!
+document.write('NaN:' + '</br>');
+document.write(0/0 + '</br>'); // --> NaN
+// NaN is a number that can't be computed or represented by a computer
+document.write("Masha" * 1000 + '</br>'); // --> NaN
+document.write(Math.sqrt(-5) + '</br>'); // --> NaN b/c it's imaginary # in math
+
+// but the weirdest thing about NaN: 'NaN != NaN'   Wow!!!
+
+if (NaN == NaN) {
+    console.log('I"m comparing NaN to NaN'); // --> it didn't print anything!
+}
+
+// but this worked...
+var myNum = 0/0; // NaN
+if (myNum != NaN) {
+    console.log('wow! NaN is not equal to NaN...');
+
+}
+// it worked b/c NaN is NOT equal to ANYTHING!  Not even to itself. So here is how we test:
+
+if (isNaN(myNum)) { // it's a special function that tests for NaN
+    myNum = 0; // --> returns true
+    console.log('myNum is equal to ' + myNum); // output displayed
+}
+
+// so what's NaN's type? 'number'!!!
+var experiment3 = 0/0;
+console.log(typeof experiment3); // --> number!
+// it should've been named
+// "Number that can't be represented by a computer"
+
+// NaN is NOT the same as Infinity (which in JS represents all numbers > than upper limit of computer floating point numbers)
+
+// BUT Infinity - Infinity = NaN
+// 8-O
+
+
+// Comparison in JS:
+if (99 == '99') {
+    console.log("99 = '99'!!! How can it be??"); // output!
+} else {
+    console.log("Nope, 99 can't be equal to a string!");
+}
+// here JS converted '99' into 99 (temporary) and then compared them
+
+// '==' is equality operator
+// '===' is strict equality operator
+
+// with '==' for different types, JS tries to convert them (temporary) to the same type first and then compares them
+
+if (5 == 'Masha') { // 5 == NaN, where NaN != to anything
+    console.log("Success comparing number to 'Masha' string");
+} else {
+    console.log("Nope, you can't compare 5 to 'Masha' string!");
+}
+
+
+// Comparing Boolean to number:
+if (1 == true) {
+    console.log('True!'); // this output
+} else {
+    console.log('False!');
+}
+// b/c True is 1, but 0 (and all other## are False)
+
+
+// Another weird thing!  undefined == null
+if (undefined == null) {
+    console.log('Wow! undefined is equal to null! How strange!'); // our output
+} else {
+    console.log('Nope!');
+}
+
+// '' is converted to 0
+// === means values are only equal is they have same same type and same value
+
+// very tricky:
+console.log('true' == true); // --> false!  why???
+// it compares string to a boolean --> false
+
+// Beware!!
+// operator '+' behaves very differently, it tries to convert everything into strings and concatenate where it can!
+console.log(3 + '3'); // --> 33!!!!
+console.log('5' + 5); // --> 55
+
+// bit with -, *, / -- the string is converted into #
+console.log(3 * '3'); // --> 9
+
+
+
+
+
+</script>
+
+</body>
+</html>
