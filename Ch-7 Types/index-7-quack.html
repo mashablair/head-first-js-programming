@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Advanced stuff we haven't learned yet -->
+    <meta charset="UTF-8">
+    <title>Chapter 7. Advanced stuff we didn't learn yet!</title>
+</head>
+<body>
+
+<script>
+
+function Duck(sound) { // mix of function and object...
+    this.sound = sound;
+    this.quack = function() { console.log(this.sound); }
+}
+
+var toy = new Duck('quack quack'); // creates new Duck and assign it to 'toy' var
+
+toy.quack();
+
+console.log(typeof toy); // --> object
+console.log(toy instanceof Duck); // --> true
+
+</script>
+
+</body>
+</html>

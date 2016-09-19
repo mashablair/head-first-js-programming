@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Practicing string manipulations -->
+    <meta charset="UTF-8">
+    <title>Chapter 7. Chair Wars.</title>
+</head>
+<body>
+
+
+
+<script>
+// Challenge: '123-4567' is a phone number input format. We need to test the input is 8 characters long with '-' at index 3 and all other characters are numbers.
+
+// my poor attempt to solve the challenge:
+var string;
+function checker(string) {
+    if (string.length === 8) {
+        console.log('passed the 1st test');
+    }
+    if (string.charAt(3) === '-') {
+        console.log('passed the 2nd test');
+    }
+
+    // to make sure all characters, except '-' are numbers:
+    for (var i=0; i<string.length; i++) {
+        if (isNaN(string[i])) { // should return true if the value is NOT a number
+        // '-' is not a number -- true
+        // this is a  BUG, the code will always return false because '-' is not a number
+            console.log('Not valid phone number!');
+            return false;
+        }
+    }
+    console.log('This phone number passed all tests!');
+}
+
+checker('896-4938');
+checker('d58-4939');
+
+// The other coders did a better job!
+// Come back here later and fix it...
+// I can use .substring() to divide the string into 'before -' and 'after -' and then use if (isNaN(before[i]) || isNaN(after[i])) { return false (and print 'not a valid phone number')}
+
+</script>
+
+
+
+
+</body>
+</html>
