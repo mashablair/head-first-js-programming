@@ -39,6 +39,46 @@ if (5/5) {
 }
 
 // SECRET LIFE OF STRINGS!!
+var text = 'DO NOT SHOUT WHEN TYPING!';
+var betterText = text.toLowerCase();
+if (text.length > 0) {
+    console.log(betterText);
+}
+
+// Yes, strings are 'primitive types'.  But here we use properties and methods on strings:
+
+var emotion = 'XOxxOO';
+var hugs = 0;
+var kisses = 0;
+
+emotion = emotion.trim(); // method? -- yes, it trims white spaces
+console.log(emotion);
+emotion = emotion.toUpperCase(); // another method
+console.log(emotion);
+
+for (var i=0; i<emotion.length; i++) { // property
+    if (emotion.charAt(i) === 'X') { // another method -- think of string like array
+        hugs++;
+    } else if (emotion.charAt(i) === 'O') {
+        kisses++;
+    }
+}
+console.log(hugs);
+console.log(kisses);
+
+// so string acts as object!
+
+// there are LOTS of string methods:
+// .toLowerCase() .toUpperCase()
+// .slice() -- returns a new string with parts of original string removed
+// .substring() -- returns portion of a string
+// .trim() -- trims white spaces
+// .replace() -- finds substrings and replaces them
+// .concat()
+// .match()
+// .indexOf() .lastIndexOf()  -- find 1st and last occurences
+
+
 </script>
 
 
