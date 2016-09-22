@@ -1,4 +1,5 @@
 // some more testing
+// if ships' locations are hardcoded:
 model.fire("53"); // miss
 
 model.fire("31"); // hit
@@ -13,4 +14,4 @@ model.fire("00"); // hit
 model.fire("01"); // hit
 model.fire("02"); // hit
 
-console.log('Is there a problem?');
+// console.log('Is there a problem?');

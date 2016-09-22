@@ -31,9 +31,9 @@ var view = {
 };
 
 // testing View:
-view.displayMessage('Uh oh!');
-view.displayHit('00'); // A0
-view.displayMiss('34'); // D4
+// view.displayMessage('Uh oh!');
+// view.displayHit('00'); // A0
+// view.displayMiss('34'); // D4
 
 
 var model = {
@@ -89,29 +89,14 @@ var model = {
     } // now we can use this method in our fire()
 };
 
-// var ship2 = model.ships[1];
-// var locations = ship2.locations;
-// console.log('Location is ' + locations[1]);
-
-// var ship3 = model.ships[2];
-// var hits = ship3.hits;
-// if (hits[0] === 'hit') {
-//     console.log('Au! We have been hit at location one!');
-// }
-
-// var ship1 = model.ships[0];
-// var hits = ship1.hits;
-// hits[2] = 'hit';
-// console.log(hits[2]);
-
 
 // testing Model:
-model.fire('31');
-console.log(model.shipsSunk);
-model.fire('41');
-console.log(model.shipsSunk);
-model.fire('51');
-console.log(model.shipsSunk);
+// model.fire('31');
+// console.log(model.shipsSunk);
+// model.fire('41');
+// console.log(model.shipsSunk);
+// model.fire('51');
+// console.log(model.shipsSunk);
 
 
 // -----Controller--------
@@ -128,10 +113,21 @@ var controller = {
     // focus on: evaluate guess to make sure it's valid, process, then get it to Model
     processGuess: function(guess) { // guess as 'A3' form
         // evaluate guess for validity:
+        var location = parseGuess(guess); // using helper function parseGuess()
+        if (location) { // if location = string --> true, if location = null --> false
+            this.guesses++; // update # of current guesses
+            var hit = model.fire(location);
+            // also check if the game is over (all ships are sunk):
+            // if hit = true AND shipsSunk = numShips:
+            if (hit && model.shipsSunk === model.numShips) {
+                view.displayMessage('You won!  All my battleships are sunk in ' + this.guesses + ' !');
+            }
+        }
 
     }
 };
 
+// helper function to be used by the controller.processGuess()
 function parseGuess(guess) {
 
     // helper array:
