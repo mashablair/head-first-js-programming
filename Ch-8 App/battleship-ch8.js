@@ -170,6 +170,10 @@ function parseGuess(guess) {
 function init() {
     var fireButton = document.getElementById('fireButton');
     fireButton.onclick = handleFireButton; // we add click handler function to the button
+
+    // let's enable clicking 'Return' key to submit user's input:
+    var guessInput = document.getElementById('guessInput');
+    guessInput.onkeypress = handleKeyPress;
 }
 
 function handleFireButton() {
@@ -180,6 +184,17 @@ function handleFireButton() {
     controller.processGuess(guess);
 
     guessInput.value = ''; // this will clear the form
+}
+
+// handler function when user presses "Enter" instead of Fire! button:
+function handleKeyPress(e) { // this event object 'e' has info about which key was pressed
+    var fireButton = document.getElementById('fireButton');
+    if (e.keyCode === 13) {
+        // if it's true, call the fireButton click:
+        fireButton.click(); // if the button was actually clicked!
+        // returns 'false' so the form doesn't try to submit itself:
+        return false;
+    }
 }
 
 // we want the browser to run init when the page is fully loaded
