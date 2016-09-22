@@ -113,20 +113,62 @@ console.log(model.shipsSunk);
 model.fire('51');
 console.log(model.shipsSunk);
 
-// some more testing
-// model.fire("53"); // miss
 
-// model.fire("31"); // hit
-// model.fire("41"); // hit
-// model.fire("51"); // hit
+// -----Controller--------
+// gets a guess, process it and passes it to Model
+// also keeps track of current # of guesses and player's progress
+// updates Model with latest guess
+// determines if games is over
 
-// model.fire("34"); // hit
-// model.fire("24"); // hit
-// model.fire("14"); // hit
+var controller = {
+    // properties:
+    guesses: 0,
 
-// model.fire("00"); // hit
-// model.fire("01"); // hit
-// model.fire("02"); // hit
+    // methods:
+    // focus on: evaluate guess to make sure it's valid, process, then get it to Model
+    processGuess: function(guess) { // guess as 'A3' form
+        // evaluate guess for validity:
+
+    }
+};
+
+function parseGuess(guess) {
+
+    // helper array:
+    var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+    // checking if guess is valid:
+    if (guess === null || guess.length !== 2) {
+        alert('Oops! Please enter a VALID guess: a letter and a number on the board.');
+    } else {
+        firstChar = guess.charAt(0); // grabs 1st character of guess
+        var row = alphabet.indexOf(firstChar); // get a # (0-6) that corresponds to the letter
+        var column = guess.charAt(1); // grabs 2nd character of guess
+
+        // checks if guess is a number:
+        if (isNaN(row) || isNaN(column)) {
+            alert("Oops, that isn't on the board!");
+        } else if ( row<0 || row >= model.boardSize || column<0 || column >= model.boardSize ) {
+            alert("Oops, that's off the board!");
+            // we're NOT using strict comparison operators b/c we need to convert string into number!
+            // model.boardSize is a dynamic number!  No hardcoding!
+        } else { // if all checks out:
+            return row + column; // return 'guess' as 1 string
+        }
+    }
+    return null; // if we get here, something failed one of the tests
+}
+
+// testing parseGuess():
+// console.log(parseGuess('A0'));
+// console.log(parseGuess('kf'));
+// console.log(parseGuess('59'));
+// console.log(parseGuess('B8'));
+// console.log(parseGuess('F9'));
+// console.log(parseGuess('D6'));
+
+
+
 
 
 
