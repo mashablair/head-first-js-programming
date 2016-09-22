@@ -76,7 +76,7 @@ var model = {
         }
         console.log('MISSED!');
         view.displayMiss(guess); // updates View
-        view.displayMessage('Sorry, you missed!'); // updates View
+        view.displayMessage('Haha, you missed!'); // updates View
         return false;
     },
 
