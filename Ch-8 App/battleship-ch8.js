@@ -43,7 +43,7 @@ var model = {
     shipsSunk: 0,
     shipLength: 3,
 
-    // ship locations and hits:
+    // ship locations and hits HARDCODED for testing:
     ships: [{ locations: ['31', '41', '51'], hits: ['', '', ''] },
             { locations: ['14', '24', '34'], hits: ['', 'hit', ''] },
             { locations: ['00', '01', '02'], hits: ['hit', '', ''] },],
@@ -55,7 +55,11 @@ var model = {
             // we could write a loop to go through 'locations' but .indexOf() is easier:
             var index = ship.locations.indexOf(guess); // it returns the index of the guess value
             // and if the value is not in the array, it returns '-1'
-            if (index >= 0) { // if the value of user's guess was found in the array
+
+            if(ship.hits[index] === 'hit') {
+                view.displayMessage('Oops, you already hit that location!');
+                return true;
+            } else if (index >= 0) { // if the value of user's guess was found in the array
                 // we have a HIT!
                 ship.hits[index] = 'hit'; // adds 'hit' to hits []
                 console.log('HIT!');
@@ -68,13 +72,12 @@ var model = {
                     this.shipsSunk++; // updates # of sunk ships above
                 }
                 return true;
-            } else {
-                console.log('MISSED!');
-                view.displayMiss(guess); // updates View
-                view.displayMessage('Sorry, you missed!'); // updates View
-                return false;
             }
         }
+        console.log('MISSED!');
+        view.displayMiss(guess); // updates View
+        view.displayMessage('Sorry, you missed!'); // updates View
+        return false;
     },
 
     // this method will check if we have 3 hits and return true or false:
@@ -120,7 +123,7 @@ var controller = {
             // also check if the game is over (all ships are sunk):
             // if hit = true AND shipsSunk = numShips:
             if (hit && model.shipsSunk === model.numShips) {
-                view.displayMessage('You won!  All my battleships are sunk in ' + this.guesses + ' !');
+                view.displayMessage('You won!  All my battleships are sunk in ' + this.guesses + ' guesses!');
             }
         }
 
@@ -156,12 +159,15 @@ function parseGuess(guess) {
 }
 
 // testing parseGuess():
-// console.log(parseGuess('A0'));
-// console.log(parseGuess('kf'));
-// console.log(parseGuess('59'));
-// console.log(parseGuess('B8'));
-// console.log(parseGuess('F9'));
-// console.log(parseGuess('D6'));
+console.log(parseGuess('A0')); // 00
+// console.log(parseGuess('kf')); // null
+// console.log(parseGuess('59')); // null
+// console.log(parseGuess('B8')); // null
+// console.log(parseGuess('F9')); // null
+console.log(parseGuess('D6')); // 36
+
+// Add event handler to 'Fire!' button to get user's input to Controller:
+
 
 
 
