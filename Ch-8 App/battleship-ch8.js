@@ -45,8 +45,8 @@ var model = {
 
     // ship locations and hits HARDCODED for testing:
     ships: [{ locations: ['31', '41', '51'], hits: ['', '', ''] },
-            { locations: ['14', '24', '34'], hits: ['', 'hit', ''] },
-            { locations: ['00', '01', '02'], hits: ['hit', '', ''] },],
+            { locations: ['14', '24', '34'], hits: ['', '', ''] },
+            { locations: ['00', '01', '02'], hits: ['', '', ''] },],
 
     // //method to fire on a ship and figure out if 'hit' or 'miss':
     fire: function(guess) {
@@ -56,7 +56,7 @@ var model = {
             var index = ship.locations.indexOf(guess); // it returns the index of the guess value
             // and if the value is not in the array, it returns '-1'
 
-            if(ship.hits[index] === 'hit') {
+            if (ship.hits[index] === 'hit') {
                 view.displayMessage('Oops, you already hit that location!');
                 return true;
             } else if (index >= 0) { // if the value of user's guess was found in the array
@@ -159,15 +159,31 @@ function parseGuess(guess) {
 }
 
 // testing parseGuess():
-console.log(parseGuess('A0')); // 00
+// console.log(parseGuess('A0')); // 00
 // console.log(parseGuess('kf')); // null
 // console.log(parseGuess('59')); // null
 // console.log(parseGuess('B8')); // null
 // console.log(parseGuess('F9')); // null
-console.log(parseGuess('D6')); // 36
+// console.log(parseGuess('D6')); // 36
 
 // Add event handler to 'Fire!' button to get user's input to Controller:
+function init() {
+    var fireButton = document.getElementById('fireButton');
+    fireButton.onclick = handleFireButton; // we add click handler function to the button
+}
 
+function handleFireButton() {
+    // code to get value from the form
+    var guessInput = document.getElementById('guessInput');
+    var guess = guessInput.value.toUpperCase(); // this 'value' property get's the form's value
+
+    controller.processGuess(guess);
+
+    guessInput.value = ''; // this will clear the form
+}
+
+// we want the browser to run init when the page is fully loaded
+window.onload = init;
 
 
 
