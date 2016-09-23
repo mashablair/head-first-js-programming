@@ -44,9 +44,80 @@ var model = {
     shipLength: 3,
 
     // ship locations and hits HARDCODED for testing:
-    ships: [{ locations: ['31', '41', '51'], hits: ['', '', ''] },
-            { locations: ['14', '24', '34'], hits: ['', '', ''] },
-            { locations: ['00', '01', '02'], hits: ['', '', ''] },],
+    // ships: [{ locations: ['31', '41', '51'], hits: ['hit', '', ''] },
+    //         { locations: ['14', '24', '34'], hits: ['', '', 'hit'] },
+    //         { locations: ['00', '01', '02'], hits: ['hit', '', ''] },],
+
+    // ship locations dynamic:
+    ships: [{ locations: [0, 0, 0], hits: ['', '', ''] },
+            { locations: [0, 0, 0], hits: ['', '', ''] },
+            { locations: [0, 0, 0], hits: ['', '', ''] },],
+
+    // ships generator:
+    // 1. loop for the number of ships we want to create
+    // 2. generate a random direction (vertical or horizontal)
+    // 3. generate a random location
+    // 4. test to see if the new locations collide
+    // 5. add locations to the ships array
+
+    // master method: creates ships [] and numShips:
+    generateShipLocations: function() {
+        var locations;
+        for (var i=0; i<this.numShips; i++) {
+            // new loop: do something while ...
+            do {
+                locations = this.generateShip(); // method below
+            } while (this.collision(locations)); // method below
+            // once location w/o collision, location is assigned to model.ships.locations []
+            this.ships[i].locations = locations;
+
+        }
+    },
+
+    // creates a single ship located randomly on the board:
+    generateShip: function() {
+        // horizontal or vertical: generates random # -- 0 or 1
+        var direction = Math.floor(Math.random() *2);
+        var row, col;
+
+        if (direction === 1) {
+            // generate horizontal ship's 1st location
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+        } else {
+            // generate vertical 1st point
+            row = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+            col = Math.floor(Math.random() * this.boardSize);
+        }
+
+        var newShipLocations = []; // will add locations 1 by 1
+        for (var i=0; i<this.shipLength; i++) {
+            if (direction === 1) {
+                // add location for new horizontal ship
+                newShipLocations.push(row + '' + (col+i)); // (col+i) should be done before it's converted into string
+            } else {
+                // add location for new vertical ship
+                newShipLocations.push((row+i) + '' + col); // '' is b/c we want to concatenate strings, not add numbers
+            }
+        }
+        return newShipLocations; // returns array
+    },
+
+    // checks if the ship doesn't overlap with existing ships on board:
+    collision: function(locations) { // 'locations' is [] of locs for new ship we want to place on the board
+        for (var i=0; i<this.numShips; i++) {
+            var ship = model.ships[i];
+            for (var j=0; j<locations.length; j++) { // if any of locations in new array
+                if (ship.locations.indexOf(locations[j]) >= 0) { // if locations don't match --> '-1'
+
+                    return true; // we found collision!
+                    // this return will stop BOTH loops immediately and exit
+                }
+
+            }
+        }
+        return false; // no collisions were found (no match)
+    },
 
     // //method to fire on a ship and figure out if 'hit' or 'miss':
     fire: function(guess) {
@@ -174,6 +245,9 @@ function init() {
     // let's enable clicking 'Return' key to submit user's input:
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress;
+
+    // let's start the game!
+    model.generateShipLocations(); // it'll happen right when you load the game, before you start playing
 }
 
 function handleFireButton() {
