@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This is a game where the user opens a page in a browser and sees some blurred image. User tries to guess what this image is and when the guess is made, user clicks on the image and the real (not blurred image) is revealed. The game is an exercise of event handling (in this case, click event).  -->
+    <meta charset="UTF-8">
+    <title>Image Guess</title>
+    <style>
+        body {
+            /*margin: 20px;*/
+            text-align: center;
+        }
+
+    </style>
+
+    <script>
+
+    window.onload = init;
+
+    function init() {
+        var image = document.getElementById('zero');
+        image.onclick = showAnswer;
+    }
+
+    function showAnswer() {
+        var image = document.getElementById('zero'); // it gets an element object - image
+        // this object has an attribute - 'src' which we can manipulate here
+        image.src = 'zero.jpg';
+        // or we can use .setAttribute() method
+        // image.setAttribute('src', 'zero.jpg');
+    }
+
+    </script>
+</head>
+<body>
+
+<img id='zero' src="zeroblur.jpg" alt="A very blurred picture of some famous painting">
+
+</body>
+</html>

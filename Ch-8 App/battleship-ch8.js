@@ -55,7 +55,7 @@ var model = {
 
     // master method: creates ships [] and numShips:
     generateShipLocations: function() {
-        var locations;
+        var locations; // this will become []
         for (var i=0; i<this.numShips; i++) {
             // new loop: do something while ...
             do {
