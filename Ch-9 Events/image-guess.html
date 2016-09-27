@@ -6,8 +6,12 @@
     <title>Image Guess</title>
     <style>
         body {
-            /*margin: 20px;*/
-            text-align: center;
+            margin: 20px;
+            /*text-align: center;*/
+        }
+
+        img {
+            margin: 20px;
         }
 
     </style>
@@ -24,7 +28,7 @@
     function showAnswer() {
         var image = document.getElementById('zero'); // it gets an element object - image
         // this object has an attribute - 'src' which we can manipulate here
-        image.src = 'zero.jpg';
+        image.src = 'img/zero.jpg';
         // or we can use .setAttribute() method
         // image.setAttribute('src', 'zero.jpg');
     }
@@ -33,7 +37,13 @@
 </head>
 <body>
 
-<img id='zero' src="zeroblur.jpg" alt="A very blurred picture of some famous painting">
+<img id='zero' src="img/zeroblur.jpg" alt="A very blurred picture of some famous painting">
+ <img id="one" src="img/oneblur.jpg">
+ <img id="two" src="img/twoblur.jpg">
+ <img id="three" src="img/threeblur.jpg">
+ <img id="four" src="img/fourblur.jpg">
+ <img id="five" src="img/fiveblur.jpg">
+
 
 </body>
 </html>
