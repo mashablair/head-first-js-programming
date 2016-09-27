@@ -16,10 +16,10 @@ var view = {
 
     // this method displays 'miss' when user's input is wrong
     displayMiss: function(location) {
-        // add class="miss" to the cell after getting user's guess for location:
+        // add class='miss' to the cell after getting user's guess for location
         var cell = document.getElementById(location);
         cell.setAttribute('class', 'miss');
-    },
+    }
 
     // this method displays 'ship' when user's input is right
     displayHit: function(location) {
@@ -30,11 +30,6 @@ var view = {
 
 };
 
-// testing View:
-// view.displayMessage('Uh oh!');
-// view.displayHit('00'); // A0
-// view.displayMiss('34'); // D4
-
 
 var model = {
     // properties:
@@ -43,15 +38,13 @@ var model = {
     shipsSunk: 0,
     shipLength: 3,
 
-    // ship locations and hits HARDCODED for testing:
-    // ships: [{ locations: ['31', '41', '51'], hits: ['hit', '', ''] },
-    //         { locations: ['14', '24', '34'], hits: ['', '', 'hit'] },
-    //         { locations: ['00', '01', '02'], hits: ['hit', '', ''] },],
 
     // ship locations dynamic:
-    ships: [{ locations: [0, 0, 0], hits: ['', '', ''] },
+    ships: [
             { locations: [0, 0, 0], hits: ['', '', ''] },
-            { locations: [0, 0, 0], hits: ['', '', ''] },],
+            { locations: [0, 0, 0], hits: ['', '', ''] },
+            { locations: [0, 0, 0], hits: ['', '', ''] }
+    ],
 
     // ships generator:
     // 1. loop for the number of ships we want to create
@@ -70,8 +63,9 @@ var model = {
             } while (this.collision(locations)); // method below
             // once location w/o collision, location is assigned to model.ships.locations []
             this.ships[i].locations = locations;
-
         }
+        console.log("Ships array: "); // this shows generated ships locations (for cheating)
+        console.log(this.ships);
     },
 
     // creates a single ship located randomly on the board:
@@ -83,10 +77,10 @@ var model = {
         if (direction === 1) {
             // generate horizontal ship's 1st location
             row = Math.floor(Math.random() * this.boardSize);
-            col = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+            col = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
         } else {
             // generate vertical 1st point
-            row = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+            row = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
             col = Math.floor(Math.random() * this.boardSize);
         }
 
@@ -106,14 +100,13 @@ var model = {
     // checks if the ship doesn't overlap with existing ships on board:
     collision: function(locations) { // 'locations' is [] of locs for new ship we want to place on the board
         for (var i=0; i<this.numShips; i++) {
-            var ship = model.ships[i];
+            var ship = this.ships[i];
             for (var j=0; j<locations.length; j++) { // if any of locations in new array
                 if (ship.locations.indexOf(locations[j]) >= 0) { // if locations don't match --> '-1'
 
                     return true; // we found collision!
                     // this return will stop BOTH loops immediately and exit
                 }
-
             }
         }
         return false; // no collisions were found (no match)
@@ -154,7 +147,7 @@ var model = {
     // this method will check if we have 3 hits and return true or false:
     // this method will then be used in fire() method above.
     isSunk: function(ship) {
-        for (var i=0; i<this.numShips; i++) {
+        for (var i=0; i<this.shipLength; i++) {
             if (ship.hits[i] !== 'hit') { // if this spot doesn't have 'hit' value,
                 return false;
             }
@@ -163,14 +156,6 @@ var model = {
     } // now we can use this method in our fire()
 };
 
-
-// testing Model:
-// model.fire('31');
-// console.log(model.shipsSunk);
-// model.fire('41');
-// console.log(model.shipsSunk);
-// model.fire('51');
-// console.log(model.shipsSunk);
 
 
 // -----Controller--------
@@ -197,7 +182,6 @@ var controller = {
                 view.displayMessage('You won!  All my battleships are sunk in ' + this.guesses + ' guesses!');
             }
         }
-
     }
 };
 
@@ -209,9 +193,9 @@ function parseGuess(guess) {
 
     // checking if guess is valid:
     if (guess === null || guess.length !== 2) {
-        alert('Oops! Please enter a VALID guess: a letter and a number on the board.');
+        alert('Oops! Please enter a VALID guess - a letter and a number on the board.');
     } else {
-        firstChar = guess.charAt(0); // grabs 1st character of guess
+        var firstChar = guess.charAt(0); // grabs 1st character of guess
         var row = alphabet.indexOf(firstChar); // get a # (0-6) that corresponds to the letter
         var column = guess.charAt(1); // grabs 2nd character of guess
 
@@ -229,13 +213,7 @@ function parseGuess(guess) {
     return null; // if we get here, something failed one of the tests
 }
 
-// testing parseGuess():
-// console.log(parseGuess('A0')); // 00
-// console.log(parseGuess('kf')); // null
-// console.log(parseGuess('59')); // null
-// console.log(parseGuess('B8')); // null
-// console.log(parseGuess('F9')); // null
-// console.log(parseGuess('D6')); // 36
+
 
 // Add event handler to 'Fire!' button to get user's input to Controller:
 function init() {
@@ -249,6 +227,9 @@ function init() {
     // let's start the game!
     model.generateShipLocations(); // it'll happen right when you load the game, before you start playing
 }
+
+// we want the browser to run init when the page is fully loaded
+window.onload = init;
 
 function handleFireButton() {
     // code to get value from the form
@@ -271,8 +252,7 @@ function handleKeyPress(e) { // this event object 'e' has info about which key w
     }
 }
 
-// we want the browser to run init when the page is fully loaded
-window.onload = init;
+
 
 
 
