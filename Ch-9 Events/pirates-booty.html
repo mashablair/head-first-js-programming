@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Events exercise -->
+    <!-- You’ve got a treasure map in your possession and we need your help in determining the coordinates of the treasure. To do that you’re going to write a bit of code that displays the coordinates on the map as you pass the mouse over the map. -->
+    <meta charset="UTF-8">
+    <title>Pirates Booty</title>
+
+    <script>
+        window.onload = init;
+        function init() {
+            var map = document.getElementById('map');
+            // set up handler here:
+            map.onmousemove = showCoordinates;
+        }
+
+        function showCoordinates(eventObj) {
+            var map = document.getElementById('coords');
+            var x = eventObj.clientX;
+            var y = eventObj.clientY;
+            map.innerHTML = 'Map coordiantes: ' + x +', ' + y;
+        }
+    </script>
+</head>
+<body>
+    <img src="img/map.jpg" id='map' alt="image of the map">
+    <p id="coords">Move mouse to find coordinates</p>
+</body>
+</html>
