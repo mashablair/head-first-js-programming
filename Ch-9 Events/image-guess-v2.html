@@ -21,7 +21,7 @@
     <script>
     window.onload = init;
 
-    function init() {
+    function init() { // here the event object is passed too (target = window object)
         var images = document.getElementsByTagName('img'); // returns 'array-like list of objects' = NodeList object
         for (var i=0; i<images.length; i++) { // NodeList object has .length property and index with [] notation
             images[i].onclick = showAnswer; // when click handler is called, it's passed an 'event object'
@@ -35,9 +35,18 @@
         var image = eventObj.target; // e.g. target property which we can access
         // target = what element generated the event
         // takes advantage of id name = name of the unblurred image (in part):
-        image.src = 'img/' + image.id + '.jpg';
-
+        var name = image.id;
+        name = 'img/' + name + '.jpg';
+        image.src = name;
+        return name;
     }
+
+    // What if I want image to become blurred again after 2 seconds?
+    // setTimeout(setTimer, 2000);
+
+    // function setTimer(name) {
+    //     name = 'img/' + name + 'blur.jpg';
+    // }
 
     </script>
 </head>
