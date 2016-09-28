@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This app is designed not as a top-to-bottom running program, but purely as a set of actions that result from an event being generated when you click on an image. Also, we handled the events on all the images with one piece of code that’s smart enough to know which image was clicked on. -->
+    <meta charset="UTF-8">
+    <title>Image Guess Game - Scaled to Multiple Images</title>
+</head>
+
+    <style>
+        body {
+            margin: 20px;
+            /*text-align: center;*/
+        }
+
+        img {
+            margin: 20px;
+        }
+
+    </style>
+
+    <script>
+    window.onload = init;
+
+    function init() {
+        var images = document.getElementsByTagName('img'); // returns 'array-like list of objects' = NodeList object
+        for (var i=0; i<images.length; i++) { // NodeList object has .length property and index with [] notation
+            images[i].onclick = showAnswer; // when click handler is called, it's passed an 'event object'
+        }
+    }
+
+    // click event causes an event object to be created which is then passed to the event handler
+
+    // click handler
+    function showAnswer(eventObj) { // the event object has properties,
+        var image = eventObj.target; // e.g. target property which we can access
+        // target = what element generated the event
+        // takes advantage of id name = name of the unblurred image (in part):
+        image.src = 'img/' + image.id + '.jpg';
+
+    }
+
+    </script>
+</head>
+<body>
+
+<img id='zero' src="img/zeroblur.jpg" alt="A very blurred picture of some famous painting">
+ <img id="one" src="img/oneblur.jpg">
+ <img id="two" src="img/twoblur.jpg">
+ <img id="three" src="img/threeblur.jpg">
+ <img id="four" src="img/fourblur.jpg">
+ <img id="five" src="img/fiveblur.jpg">
+
+</body>
+</html>
