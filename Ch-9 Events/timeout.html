@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timeout handler</title>
+</head>
+<body>
+
+<h1>Timeout Handler</h1>
+
+<script>
+
+// function timeOut() {
+//     alert('Are you just gonna seat here staring at the blank page??');
+// }
+
+// setTimeout(timeOut, 3000);
+
+
+var tick = true;
+
+function ticker() {
+    if (tick) {
+        console.log('tick');
+        tick = false;
+    } else {
+        console.log('tock');
+        tick = true;
+    }
+}
+
+setInterval(ticker, 1000);
+
+</script>
+
+</body>
+</html>
