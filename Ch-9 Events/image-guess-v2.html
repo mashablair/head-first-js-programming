@@ -38,14 +38,18 @@
         var name = image.id;
         name = 'img/' + name + '.jpg';
         image.src = name;
+
+        setTimeout(reblur, 2000, image); // we can pass along an argument 'image'
+        // so that setTimer will know which image to reblur
     }
 
     // What if I want image to become blurred again after 2 seconds?
-    // setTimeout(setTimer, 2000);
 
-    // function setTimer(name) {
-    //     name = 'img/' + name + 'blur.jpg';
-    // }
+    function reblur(image) { // now when this handler is called, it'll be passed the image
+        var name = image.id;
+        name = 'img/' + name + 'blur.jpg';
+        image.src = name;
+    }
 
     </script>
 </head>

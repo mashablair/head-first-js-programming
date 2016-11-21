@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cola.  Sorting arrays using the compare function.</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        p {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Sorting arrays</h1>
+
+<p>JavaScript arrays provide a sort method that, given a function that knows how to compare two items in the array, sorts the array for you.</p>
+
+<p>Here’s the <b>big picture</b> of how this works and how your comparison function fits in: <i>sort algorithms are well known and widely implemented, and the great thing about them is that sorting code can be reused for just about any set of items.</i> But there’s one catch: to know how to sort a specific set of items, the sort code needs to know how those items compare.</p>
+
+<p>Next we need to write our own function that knows how to compare two values in the array. </p>
+
+<script>
+
+var products = [
+    { name: "Grapefruit", calories: 170, color: "red", sold: 8200 },
+    { name: "Orange", calories: 160, color: "orange", sold: 12101 },
+    { name: "Cola", calories: 210, color: "caramel", sold: 25412 },
+    { name: "Diet Cola", calories: 0, color: "caramel", sold: 43922 },
+    { name: "Lemon", calories: 200, color: "clear", sold: 14983 },
+    { name: "Raspberry", calories: 180, color: "pink", sold: 9427 },
+    { name: "Root Beer", calories: 200, color: "caramel", sold: 9909 },
+    { name: "Water", calories: 0, color: "clear", sold: 62123 }
+];
+
+//here is the compare function we'll pass into sort method:
+function compareSold(colaA, colaB) {
+    if (colaA.sold > colaB.sold) {
+        return 1;
+    } else if (colaA.sold === colaB.sold) {
+        return 0;
+    } else {
+        return -1;
+    }
+}
+
+function compareName(colaA, colaB) {
+    if (colaA.name > colaB.name) {
+        return 1;
+    } else if (colaA.sold === colaB.sold) {
+        return 0;
+    } else {
+        return -1;
+    }
+}
+
+function printProducts(products) {
+    for (var i = 0; i < products.length; i++) {
+        console.log("Name " + products[i].name + ", Calories: " + products[i].calories + ", Color: " + products[i].color + ", Sold: " + products[i].sold);
+    }
+}
+
+products.sort(compareSold);
+console.log('Products sorted by Bottles Sold: ');
+printProducts(products);
+
+products.sort(compareName);
+console.log('Products sorted by Name: ');
+printProducts(products);
+
+// same functions to sort by calories and color:
+
+
+
+
+</script>
+
+</body>
+</html>

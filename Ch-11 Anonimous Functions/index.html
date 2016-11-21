@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anonimous Functions</title>
+
+    <style>
+
+    button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 50%;
+    }
+</style>
+</head>
+<body>
+
+<h1>Anonimous Functions</h1>
+
+<img src="functions.png" alt="screenshot of the book">
+
+<button id="bake">Bake!</button>
+
+<script>
+
+// for window.onload, we don't need a function that has a name because it's only gonna be called once for this very purpose.  So let's refactor:
+
+// window.onload = function() { console.log('Yup, our page has loaded!'); }
+
+
+
+window.onload = function() {
+    var button = document.getElementById("bake");
+    button.onclick = function() {
+        console.log("Time to bake the cookies.");
+        cookies.bake(2500);
+    }
+}
+
+var cookies = {
+    instructions: "Preheat oven to 350...",
+    // anonimous function:
+    bake: function(time) {
+        console.log("Baking the cookies.");
+        setTimeout(done, time); }
+};
+
+function done() {
+    alert("Cookies are ready, take them out to cool.");
+    console.log("Cooling the cookies.");
+    // anonimous function:
+    var cool = function() {
+        alert("Cookies are cool, time to eat!");
+    };
+
+    setTimeout(cool, 1000);
+}
+
+// administer(patient, function(dosage) {
+//     if (dosage > 0) {
+//         inject(dosage);
+//     }
+// }, time);
+
+
+
+</script>
+
+</body>
+</html>

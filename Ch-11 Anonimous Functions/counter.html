@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magic Counter.  Practicing Closures</title>
+</head>
+<body>
+    <h1>Closures</h1>
+
+    <h3>A closure results when we combine a function that has free variables with an environment that provides variable bindings for all those free variables.</h3>
+
+    <p>Using global vars can lead to a buggy code when you work on a team.</p>
+
+    <script>
+        function makeCounter() {
+            var count = 0;
+
+            function counter() {
+                count++;
+                return count;
+            }
+            return counter;
+        }
+        var doCount = makeCounter();
+        console.log(doCount());
+        console.log(doCount());
+
+// Counter w/o closure -- potential of global var name clashing:
+
+var count = 0;
+window.onload = function() {
+    var button = document.getElementById("clickme");
+    button.onclick = handleClick;
+};
+
+function handleClick() {
+    var message = "You clicked me ";
+    var div = document.getElementById("message"); count++;
+    div.innerHTML = message + count + " times!";
+}
+
+// Counter with a closure!  Perfect for a cow clicker!  p. 504
+
+window.onload = function() {
+    var count = 0;
+    var message = "You clicked me ";
+    var div = document.getElementById("message");
+    var button = document.getElementById("clickme");
+
+    button.onclick = function() {
+        count++;
+        div.innerHTML = message + count + " times!";
+    };
+};
+
+
+    </script>
+</body>
+</html>

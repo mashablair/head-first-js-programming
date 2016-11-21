@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Objects with Constructors.  Coffee House.</title>
+</head>
+<body>
+
+<h1>Welcome to our Coffee House!</h1>
+<h2>What would you like to drink?</h2>
+
+<script>
+
+function Coffee(roast, ounces, getSize, toString) {
+    this.roast = roast;
+    this.ounces = ounces;
+    this.getSize = function() {
+        var size = "small";
+        if (this.ounces > 8 && this.ounces < 12) {
+            size = "medium";
+        } else if (this.ounces > 12) {
+            size = "large";
+        }
+        return size;
+    };
+    this.toString = function() {
+        return "You've ordered a " + this.getSize() + " " + this.roast + ".";
+    }
+}
+
+var houseBlend = new Coffee("House Blend", 12);
+console.log(houseBlend.toString());
+
+var darkRoast = new Coffee("Dark Roast", 16);
+console.log(darkRoast.toString());
+
+var starbucks = new Coffee("Starbucks", 8);
+console.log(starbucks.toString());
+
+</script>
+
+</body>
+</html>

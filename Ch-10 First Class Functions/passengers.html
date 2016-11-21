@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Passengers. First Class Functions</title>
+</head>
+<body>
+
+<h1>Welcome Aboard!</h1>
+
+<h2>Functions in JS are 1st Class Values</h2>
+
+<p>In JS functions are first class values which means they can do everything other values, like numbers and strings, can do. </p>
+
+<ol>
+<li>You can assign functions to variables</li>
+<li>You can pass functions to functions</li>
+<li>You can return functions from functions</li>
+</ol>
+
+
+<script>
+
+var passengers = [
+    { name: "Jane Doloop", paid: true, ticket: "coach" },
+    { name: "Dr. Evel", paid: true, ticket: "firstclass" },
+    { name: "Sue Property", paid: false, ticket: "firstclass" },
+    { name: "John Funcall", paid: true, ticket: "coach" }
+];
+
+function serverPassengers(passengers) {
+    for (var i = 0; i < passengers.length; i++) {
+        serveCustomer(passengers[i]); // we are calling it for each passenger
+    }
+}
+
+function serveCustomer(passenger) {
+    // get drink order:
+    var getDrinkOrderFunction = createDrinkOrder(passenger);
+    var getDinnerOrderFunction = createDinnerOrder(passenger);
+    getDrinkOrderFunction(); // we use the function we get back when we need to get a drink order for THIS passenger
+    // get dinner order
+    getDinnerOrderFunction();
+
+    getDrinkOrderFunction();
+    getDrinkOrderFunction();
+    // pick up trash
+}
+
+function createDrinkOrder(passenger) {
+    var orderFunction; // we create a var to hold the function we want to return
+
+    if (passenger.ticket === "firstclass") {
+        orderFunction = function() {
+            console.log('Would you like wine or beer?');
+        };
+    } else {
+        orderFunction = function() {
+            console.log('Water or soda?');
+        };
+    }
+    return orderFunction;
+}
+
+function createDinnerOrder(passenger) {
+    var orderFunction;
+
+    if (passenger.ticket === "firstclass") {
+        orderFunction = function() {
+            console.log("Would you like chicken or pasta?");
+        };
+    } else {
+        orderFunction = function() {
+            console.log("Would you like peanuts or pretzels?");
+        };
+    }
+    return orderFunction;
+}
+
+serverPassengers(passengers);
+
+// but in this function above we are unnecesserily recomputing what kind of passenger we are serving every time we take an order.  What if you had to do it by communicating with a web service from a mobile device?  That gets time consuming and expensive.
+
+// we can fix this by making use of the capability to return functions from functions, e.g.:
+
+// function addN(n) {
+//     var adder = function(x) {
+//                     return n + x;
+//                 };
+//     return adder
+// }
+
+</script>
+
+</body>
+</html>
