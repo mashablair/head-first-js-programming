@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype Dog</title>
+</head>
+<body>
+
+<script>
+    // first we set up dog prototype:
+    function Dog(name, breed, weight) {
+        this.name = name;
+        this.breed = breed;
+        this.weight = weight;
+    }
+    // we don't need methods here b/c we gonna get them from the prototype
+
+    Dog.prototype.species = "Canine";
+
+    Dog.prototype.bark = function() {
+        if (this.weight > 25) {
+            console.log(this.name + " says Woof!");
+        } else {
+            console.log(this.name + " syas Yip!");
+        }
+    };
+
+    Dog.prototype.run = function() {
+        console.log("Run");
+    };
+
+    Dog.prototype.wag = function() {
+        console.log("Wag wag wag!");
+    };
+
+    // now let's create some dogs:
+    var fido = new Dog('Fido', 'Mixed', 35);
+    var fluffy = new Dog('Fluffy', 'Poodle', 30);
+    var spot = new Dog('Spot', 'Chihuahua', 10);
+
+    fido.bark();
+    fido.run();
+    fido.wag();
+
+    fluffy.bark();
+    fluffy.run();
+    fluffy.wag();
+
+    spot.bark();
+    spot.run();
+    spot.wag();
+
+    // but Spot wants a bigger woof.  Let's give it to him:
+
+    spot.bark = function() {
+        console.log(this.name + " says WOOF!");
+    };
+
+    spot.bark();
+    spot.run();
+    spot.wag();
+
+</script>
+</body>
+</html>
